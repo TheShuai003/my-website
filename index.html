@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FreeTransfer · 自由传输</title>
+    <!-- 干净、轻量，适合作为 GitHub Pages + Cloudflare 的展示页 -->
+    <style>
+        /* 全局重置 & 柔和的视觉风格 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8fafc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            /* 细微的渐变，增加层次感 */
+            background: linear-gradient(145deg, #f1f5f9 0%, #e9edf2 100%);
+        }
+
+        .card {
+            max-width: 640px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 3rem;
+            padding: 3rem 2.5rem;
+            box-shadow:
+                0 20px 40px -12px rgba(0, 0, 0, 0.15),
+                0 4px 18px rgba(0, 0, 0, 0.03),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 28px 48px -16px rgba(0, 0, 0, 0.18);
+        }
+
+        /* 标志 / 图标 */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: #1e293b;
+            border-radius: 28px;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 2.4rem;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(30, 41, 59, 0.25);
+            transition: background 0.2s ease;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            transform: rotate(-2deg);
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #475569;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            border-bottom: 2px dashed #d1d9e6;
+            padding-bottom: 1.4rem;
+            display: inline-block;
+        }
+
+        .description {
+            color: #334155;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2.2rem;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .description strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        /* 状态标识 —— 让页面「活」一点 */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #e6f0ea;
+            padding: 0.45rem 1.2rem 0.45rem 1rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #0b3b2c;
+            margin-bottom: 2rem;
+            border: 1px solid #c0d6cc;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #16a34a;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+            box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.65;
+                transform: scale(0.9);
+            }
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-note a {
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px dotted transparent;
+            transition: border-color 0.15s ease, color 0.15s ease;
+        }
+
+        .footer-note a:hover {
+            color: #0f172a;
+            border-bottom-color: #0f172a;
+        }
+
+        /* 简单响应式调整 */
+        @media (max-width: 480px) {
+            .card {
+                padding: 2rem 1.5rem;
+                border-radius: 2rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .logo {
+                width: 64px;
+                height: 64px;
+                font-size: 1.8rem;
+                border-radius: 22px;
+            }
+            .description {
+                font-size: 0.98rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+
+        <!-- 简单 logo -->
+        <div class="logo">
+            <span>⚡</span>
+        </div>
+
+        <!-- 标题 -->
+        <h1>FreeTransfer</h1>
+        <div class="subhead">自由 · 高效 · 即刻传输</div>
+
+        <!-- 状态徽标 -->
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            服务运行中 · 已就绪
+        </div>
+
+        <!-- 描述文案 —— 简单直接 -->
+        <p class="description">
+            <strong>www.freetransfer.store</strong><br />
+            由 GitHub Pages 提供托管，Cloudflare 加速分发。<br />
+            此页面作为仓库入口，一切从简，专注传递。
+        </p>
+
+        <!-- 页脚链接 —— 占位，可替换为自己的项目地址 -->
+        <div class="footer-note">
+            <a href="#" target="_blank">GitHub 仓库</a>
+            <a href="#" target="_blank">Cloudflare 仪表盘</a>
+            <a href="#" target="_blank">状态页</a>
+        </div>
+
+        <!-- 隐藏的小彩蛋：部署信息 (仅供查看) -->
+        <div style="margin-top: 1.8rem; font-size: 0.7rem; color: #b9c7da; letter-spacing: 0.3px;">
+            ✦ 部署于 · 2026 · 简洁即美 ✦
+        </div>
+
+    </div>
+
+</body>
+</html>
